@@ -6,6 +6,7 @@ mod palindrome_number;
 mod roman_to_number;
 mod top_k_frequent_element;
 mod two_sum;
+mod valid_parentheses;
 
 fn main() {
     println!("Hello, world!");
