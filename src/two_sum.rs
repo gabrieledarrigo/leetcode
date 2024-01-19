@@ -19,7 +19,7 @@ use std::collections::HashMap;
 ///
 /// Input: nums = [3,3], target = 6
 /// Output: [0,1]
-///
+
 pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut answer: Vec<i32> = vec![];
 
@@ -53,6 +53,7 @@ pub fn two_sum_with_index(nums: Vec<i32>, target: i32) -> Vec<i32> {
     vec![]
 }
 
+#[cfg(test)]
 mod tests {
     use super::*;
 

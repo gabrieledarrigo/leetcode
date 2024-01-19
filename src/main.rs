@@ -1,5 +1,8 @@
+#![allow(unused_imports)]
+#![allow(dead_code)]
+
 mod add_two_numbers;
-mod palyndrome_number;
+mod palindrome_number;
 mod roman_to_number;
 mod top_k_frequent_element;
 mod two_sum;

@@ -87,9 +87,40 @@ pub fn roman_to_int(roman_numeral: String) -> i32 {
     sum
 }
 
+pub fn roman_to_int_alternative(roman_numeral: String) -> i32 {
+    let vector: Vec<char> = roman_numeral
+        .replace("IV", "IIII")
+        .replace("IX", "VIIII")
+        .replace("XL", "XXXX")
+        .replace("XC", "LXXXX")
+        .replace("CD", "CCCC")
+        .replace("CM", "DCCCC")
+        .chars()
+        .collect();
+
+    let mut sum = 0;
+
+    for digit in vector.iter() {
+        let to_sum = match digit {
+            'I' => 1,
+            'V' => 5,
+            'X' => 10,
+            'L' => 50,
+            'C' => 100,
+            'D' => 500,
+            'M' => 1000,
+            _ => 0,
+        };
+
+        sum += to_sum;
+    }
+
+    sum
+}
+
 #[cfg(test)]
 mod tests {
-    use super::roman_to_int;
+    use super::{roman_to_int, roman_to_int_alternative};
 
     #[test]
     fn test_roman_to_int() {
@@ -101,5 +132,17 @@ mod tests {
         assert_eq!(roman_to_int(String::from("CD")), 400);
         assert_eq!(roman_to_int(String::from("CM")), 900);
         assert_eq!(roman_to_int(String::from("MCMXCIV")), 1994);
+    }
+
+    #[test]
+    fn test_roman_to_int_alternative() {
+        assert_eq!(roman_to_int_alternative(String::from("III")), 3);
+        assert_eq!(roman_to_int_alternative(String::from("IV")), 4);
+        assert_eq!(roman_to_int_alternative(String::from("IX")), 9);
+        assert_eq!(roman_to_int_alternative(String::from("XL")), 40);
+        assert_eq!(roman_to_int_alternative(String::from("XC")), 90);
+        assert_eq!(roman_to_int_alternative(String::from("CD")), 400);
+        assert_eq!(roman_to_int_alternative(String::from("CM")), 900);
+        assert_eq!(roman_to_int_alternative(String::from("MCMXCIV")), 1994);
     }
 }
