@@ -8,6 +8,7 @@ mod roman_to_number;
 mod str_str;
 mod top_k_frequent_element;
 mod two_sum;
+mod valid_anagram;
 mod valid_parentheses;
 
 fn main() {
