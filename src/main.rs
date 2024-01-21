@@ -2,6 +2,7 @@
 #![allow(dead_code)]
 
 mod add_two_numbers;
+mod longest_common_prefix;
 mod palindrome_number;
 mod roman_to_number;
 mod str_str;
