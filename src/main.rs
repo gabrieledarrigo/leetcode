@@ -5,6 +5,7 @@ mod add_two_numbers;
 mod longest_common_prefix;
 mod palindrome_number;
 mod roman_to_number;
+mod search_insert_position;
 mod str_str;
 mod top_k_frequent_element;
 mod two_sum;
