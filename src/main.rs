@@ -3,6 +3,7 @@
 
 mod add_two_numbers;
 mod longest_common_prefix;
+mod merge_two_sorted_lists;
 mod palindrome_number;
 mod roman_to_number;
 mod search_insert_position;
