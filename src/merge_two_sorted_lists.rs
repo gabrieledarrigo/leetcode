@@ -60,8 +60,8 @@ impl Solution {
     }
 
     pub fn merge_two_lists(
-        mut list1: Option<Box<ListNode>>,
-        mut list2: Option<Box<ListNode>>,
+        list1: Option<Box<ListNode>>,
+        list2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
         let mut vector1 = Self::list_to_vector(list1);
         let mut vector2 = Self::list_to_vector(list2);
@@ -70,6 +70,29 @@ impl Solution {
         vector1.sort();
 
         Self::vector_to_list(vector1)
+    }
+
+    pub fn merge_two_lists_alternative(
+        mut list1: Option<Box<ListNode>>,
+        mut list2: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
+        let mut head = Box::new(ListNode { val: 0, next: None });
+        let mut current = &mut head;
+
+        while let (Some(node1), Some(node2)) = (list1.as_ref(), list2.as_ref()) {
+            if node1.val < node2.val {
+                current.next = list1.take();
+                list1 = current.next.as_mut().unwrap().next.take();
+            } else {
+                current.next = list2.take();
+                list2 = current.next.as_mut().unwrap().next.take();
+            }
+
+            current = current.next.as_mut().unwrap();
+        }
+
+        current.next = list1.or(list2);
+        head.next
     }
 }
 
@@ -125,6 +148,33 @@ mod tests {
 
         assert_eq!(
             Solution::merge_two_lists(
+                Solution::vector_to_list(vec![]),
+                Solution::vector_to_list(vec![0])
+            ),
+            Solution::vector_to_list(vec![0])
+        );
+    }
+
+    #[test]
+    fn test_merge_two_lists_alternative() {
+        assert_eq!(
+            Solution::merge_two_lists_alternative(
+                Solution::vector_to_list(vec![1, 2, 4]),
+                Solution::vector_to_list(vec![1, 3, 4])
+            ),
+            Solution::vector_to_list(vec![1, 1, 2, 3, 4, 4])
+        );
+
+        assert_eq!(
+            Solution::merge_two_lists_alternative(
+                Solution::vector_to_list(vec![]),
+                Solution::vector_to_list(vec![])
+            ),
+            Solution::vector_to_list(vec![])
+        );
+
+        assert_eq!(
+            Solution::merge_two_lists_alternative(
                 Solution::vector_to_list(vec![]),
                 Solution::vector_to_list(vec![0])
             ),
